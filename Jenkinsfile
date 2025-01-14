@@ -1,13 +1,15 @@
-node {
-    def app = docker.image('node:16-buster-slim')
-    
-    stage('Run Container') {
-        app.run('-p 3000:3000') // Memulai container
+pipeline {
+    agent {
+        docker {
+            image 'node:16-buster-slim' 
+            args '-p 3000:3000' 
+        }
     }
-    
-    stage('Build') {
-        app.inside {
-            sh 'npm install'
+    stages {
+        stage('Build') { 
+            steps {
+                sh 'npm install'
+            }
         }
     }
 }
