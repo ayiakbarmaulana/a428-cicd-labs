@@ -5,7 +5,7 @@ echo 'production in the local "build" directory (i.e. within the'
 echo 'correctly bundles React in production mode and optimizes the build for'
 echo 'the best performance.'
 set -x
-npm run build
+NODE_OPTIONS=--openssl-legacy-provider npm run build
 set +x
 
 echo 'The following "npm" command runs your Node.js/React application in'

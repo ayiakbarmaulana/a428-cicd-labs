@@ -24,20 +24,11 @@ node {
                 ssh-keyscan -H ec2-3-1-211-213.ap-southeast-1.compute.amazonaws.com >> ~/.ssh/known_hosts
                 '''
                 sh '''
-                    echo "Deploying to EC2 instance"
-                    ssh ubuntu@ec2-3-1-211-213.ap-southeast-1.compute.amazonaws.com << EOF
-                        whoami
-                        cd ~/a428-cicd-labs
-                        git pull
-                        npm install
-                        ./jenkins/scripts/deliver.sh
-                        read -p "Finished using the website? (Press Enter to continue)"
-                        ./jenkins/scripts/kill.sh
-                    EOF
-        '''
-
-                // input message: 'Finished using the website? (Click "Proceed" to continue)'
-                // sh './jenkins/scripts/kill.sh'
+                echo "Deploying to EC2 instance"
+                ssh ubuntu@ec2-3-1-211-213.ap-southeast-1.compute.amazonaws.com "whoami && cd ~/a428-cicd-labs && git pull && npm install && ./jenkins/scripts/deliver.sh"
+                '''
+                
+                sleep(time: 60, unit: 'SECONDS')
             }
             
         }
