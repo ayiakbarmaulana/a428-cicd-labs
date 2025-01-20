@@ -33,7 +33,7 @@ node {
                     npm install 
                     NODE_OPTIONS=--openssl-legacy-provider npm run build 
                     sudo rm -rf /var/www/jenkins-react-app 
-                    sudo cp -r /home/ubuntu/a428-cicd-labs/build/ /var/www/jenkins-react-app/"
+                    sudo cp -r /home/ubuntu/a428-cicd-labs/build/ /var/www/jenkins-react-app/
                 EOF
                 '''
 
