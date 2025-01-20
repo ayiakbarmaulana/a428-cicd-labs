@@ -27,8 +27,6 @@ node {
                 echo "Deploying to EC2 instance"
                 ssh ubuntu@ec2-3-1-211-213.ap-southeast-1.compute.amazonaws.com "whoami && cd ~/a428-cicd-labs && git pull && npm install && ./jenkins/scripts/deliver.sh"
                 '''
-                
-                sleep(time: 60, unit: 'SECONDS')
             }
             
         }
