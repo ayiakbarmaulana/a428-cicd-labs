@@ -23,7 +23,7 @@ node {
                     '''
                     sh '''
                     echo "Deploying to EC2 instance"
-                    ssh ubuntu@ec2-13-215-173-108.ap-southeast-1.compute.amazonaws.com "cd ~/a428-cicd-labs && git pull && whoami && ls -lah && ./jenkins/scripts/deliver.sh"
+                    ssh ubuntu@ec2-13-215-173-108.ap-southeast-1.compute.amazonaws.com "cd ~/a428-cicd-labs && git pull && whoami && npm install && ./jenkins/scripts/deliver.sh"
                     '''
                 }
                 input message: 'Finished using the website? (Click "Proceed" to continue)'
