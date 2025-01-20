@@ -26,15 +26,7 @@ node {
 
                 sh '''
                 echo "Deploying to EC2 instance"
-                ssh ubuntu@ec2-3-1-211-213.ap-southeast-1.compute.amazonaws.com << 'EOF'
-                    whoami
-                    cd ~/a428-cicd-labs
-                    git pull
-                    npm install
-                    NODE_OPTIONS=--openssl-legacy-provider npm run build
-                    sudo rm -rf /var/www/jenkins-react-app
-                    sudo cp -r /home/ubuntu/a428-cicd-labs/build/ /var/www/jenkins-react-app/
-                EOF
+                ssh ubuntu@ec2-3-1-211-213.ap-southeast-1.compute.amazonaws.com "whoami && cd ~/a428-cicd-labs && git pull && npm install && NODE_OPTIONS=--openssl-legacy-provider npm run build && sudo rm -rf /var/www/jenkins-react-app && sudo cp -r /home/ubuntu/a428-cicd-labs/build/ /var/www/jenkins-react-app/"
                 '''
 
                 // sh '''
