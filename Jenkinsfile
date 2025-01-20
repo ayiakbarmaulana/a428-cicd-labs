@@ -23,16 +23,22 @@ node {
                 echo "Adding EC2 instance to known_hosts"
                 ssh-keyscan -H ec2-3-1-211-213.ap-southeast-1.compute.amazonaws.com >> ~/.ssh/known_hosts
                 '''
+
                 sh '''
                 echo "Deploying to EC2 instance"
-                ssh ubuntu@ec2-3-1-211-213.ap-southeast-1.compute.amazonaws.com "whoami && cd ~/a428-cicd-labs && git pull && npm install && ./jenkins/scripts/deliver.sh"
+                ssh ubuntu@ec2-3-1-211-213.ap-southeast-1.compute.amazonaws.com "whoami && cd ~/a428-cicd-labs && git pull && npm install && sudo rm -rf /var/www/jenkins-react-app && sudo cp -r /home/ubuntu/a428-cicd-labs/build/ /var/www/jenkins-react-app/"
                 '''
 
-                input message: 'Finished using the website? (Click "Proceed" to continue)'
-                
-                sh '''
-                ssh ubuntu@ec2-3-1-211-213.ap-southeast-1.compute.amazonaws.com "whoami && cd ~/a428-cicd-labs && ./jenkins/scripts/kill.sh"
-                '''
+                // sh '''
+                // echo "Deploying to EC2 instance"
+                // ssh ubuntu@ec2-3-1-211-213.ap-southeast-1.compute.amazonaws.com "whoami && cd ~/a428-cicd-labs && git pull && npm install && ./jenkins/scripts/deliver.sh"
+                // '''
+
+                // input message: 'Finished using the website? (Click "Proceed" to continue)'
+
+                // sh '''
+                // ssh ubuntu@ec2-3-1-211-213.ap-southeast-1.compute.amazonaws.com "whoami && cd ~/a428-cicd-labs && ./jenkins/scripts/kill.sh"
+                // '''
 
             }
             
